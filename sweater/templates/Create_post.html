@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% from '_formhelper.html' import render_field %}
+{% block content %}
+<form method="post">
+    <dl>
+    {{ render_field(form.post_name) }}
+    {{ render_field(form.post_text) }}
+    </dl>
+    <input type="submit" value="Submit!">
+</form>
+{% endblock %}

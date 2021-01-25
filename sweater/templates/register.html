@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% from '_formhelper.html' import render_field%}
+{% block content %}
+    <form method="post">
+    <dl>
+    {{ render_field(form.login) }}
+    {{ render_field(form.email) }}
+    {{ render_field(form.password) }}
+    {{ render_field(form.confirm) }}
+    </dl>
+        <input type="submit" value="Register">
+        <a href="{{ url_for('login_page')}}"><input type="button" value="log_in"></a>
+    </form>
+{% endblock %}

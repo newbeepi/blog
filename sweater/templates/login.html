@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% from '_formhelper.html' import render_field %}
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+    <form method="post">
+    <dl>
+        {{ render_field(form.login) }}
+        {{ render_field(form.password) }}
+    </dl>
+        <input type="submit" value="log in">
+        <a href="{{ url_for('register')}}"><input type="button" value="Register"></a>
+    </form>
+{% endblock %}
