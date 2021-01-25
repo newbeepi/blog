@@ -19,3 +19,7 @@ class RegisterForm(Form):
 class LogInForm(Form):
     login = StringField('login')
     password = PasswordField('password')
+
+
+class CommentForm(Form):
+    comment = TextAreaField('Leave your comment', [validators.DataRequired()])

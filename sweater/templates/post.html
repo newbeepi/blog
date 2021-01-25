@@ -1,6 +1,21 @@
 {% extends 'base.html' %}
+{% from '_formhelper.html' import render_field  %}
 {% block content %}
     <h3>{{ post.post_name }}</h3>
     <p>{{ post.author }}</p>
     <p>{{ post.post_text }}</p>
+    {% for comment in comments %}
+    <p> <b>{{ comment.author.username }}</b></p>
+    <p>{{ comment.text }}</p>
+    {% endfor %}
+    {% if current_user.is_authenticated %}
+    <form method="post">
+        <dl>
+        {{ render_field(form.comment) }}
+        </dl>
+        <input type="submit" value="Comment!">
+    </form>
+    {% else %}
+    <p><b>Log in to leave your comment</b></p>
+    {% endif %}
 {% endblock %}

@@ -38,6 +38,20 @@ class Post(db.Model):
         return self.post_name
 
 
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    text = db.Column(db.Text)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    author = db.relationship('User', backref=db.backref('comments', lazy=True))
+    post = db.relationship('Post', backref=db.backref('comments', lazy=True))
+
+    def __init__(self, text, user_id, post_id):
+        self.text = text
+        self.user_id = user_id
+        self.post_id = post_id
+
+
 @manager.user_loader
 def load_user(user_id):
     return User.query.filter_by(user_id=user_id).first()
